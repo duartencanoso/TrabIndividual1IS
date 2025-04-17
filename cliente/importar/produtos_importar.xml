@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<produtos>
+  <produto>
+    <id>10</id>
+    <nome>Smartphone Galaxy A10</nome>
+    <marca>Samsung</marca>
+    <preco>199.99</preco>
+    <stock>30</stock>
+    <caracteristicas>
+      <tela>6.2 polegadas</tela>
+      <bateria>3400mAh</bateria>
+      <armazenamento>32GB</armazenamento>
+    </caracteristicas>
+  </produto>
+  <produto>
+    <id>11</id>
+    <nome>Headphones Bluetooth</nome>
+    <marca>JBL</marca>
+    <preco>89.90</preco>
+    <stock>45</stock>
+    <caracteristicas>
+      <tela>n/a</tela>
+      <bateria>20h</bateria>
+      <armazenamento>n/a</armazenamento>
+    </caracteristicas>
+  </produto>
+  <produto>
+    <id>12</id>
+    <nome>Smartwatch</nome>
+    <marca>Huawei</marca>
+    <preco>149.99</preco>
+    <stock>20</stock>
+    <caracteristicas>
+      <tela>1.6 polegadas</tela>
+      <bateria>200mAh</bateria>
+      <armazenamento>4GB</armazenamento>
+    </caracteristicas>
+  </produto>
+</produtos>

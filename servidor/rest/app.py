@@ -2,10 +2,12 @@ from flask import Flask, request, jsonify
 import json
 from jsonschema import validate, ValidationError
 from jsonpath_ng.ext import parse
+from collections import OrderedDict
 import os
 
 app = Flask(__name__)
-DATA_FILE = "produtos.json"
+
+DATA_FILE = os.path.abspath(os.path.join(os.path.dirname(__file__), "./dados/produtos.json"))
 SCHEMA_FILE = "schema.json"
 
 # Carregar esquema JSON
@@ -18,12 +20,28 @@ def carregar_produtos():
         return []
     with open(DATA_FILE) as f:
         return json.load(f)
+    
+# Ordena os campos ao guardar
+def ordenar_produto(p):
+    return OrderedDict([
+        ("id", p["id"]),
+        ("nome", p["nome"]),
+        ("marca", p["marca"]),
+        ("preco", p["preco"]),
+        ("stock", p["stock"]),
+        ("caracteristicas", OrderedDict([
+            ("tela", p.get("caracteristicas", {}).get("tela", "n/a")),
+            ("bateria", p.get("caracteristicas", {}).get("bateria", "n/a")),
+            ("armazenamento", p.get("caracteristicas", {}).get("armazenamento", "n/a")),
+        ]))
+    ])
 
 def guardar_produtos(produtos):
-    with open(DATA_FILE, "w") as f:
-        json.dump(produtos, f, indent=2)
+    produtos_ordenados = [ordenar_produto(p) for p in produtos]
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(produtos_ordenados, f, indent=2, ensure_ascii=False)
 
-# --- CRUD ---
+# === CRUD ===
 
 @app.route("/produtos", methods=["GET"])
 def listar_produtos():
@@ -98,7 +116,7 @@ def consulta_jsonpath():
     query = request.args.get("q")
     print("Recebido JSONPath:", query)
     if not query:
-        return jsonify({"erro": "Parâmetro 'q' obrigatório"}), 400
+        return jsonify({"erro": "Parametro 'q' obrigatório"}), 400
 
     produtos = carregar_produtos()
     try:

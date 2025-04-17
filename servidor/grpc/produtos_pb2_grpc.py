@@ -45,6 +45,11 @@ class ProdutoServiceStub(object):
                 request_serializer=produtos__pb2.Produto.SerializeToString,
                 response_deserializer=produtos__pb2.ProdutoResponse.FromString,
                 _registered_method=True)
+        self.EditarProduto = channel.unary_unary(
+                '/catalogo.ProdutoService/EditarProduto',
+                request_serializer=produtos__pb2.Produto.SerializeToString,
+                response_deserializer=produtos__pb2.ProdutoResponse.FromString,
+                _registered_method=True)
         self.RemoverProduto = channel.unary_unary(
                 '/catalogo.ProdutoService/RemoverProduto',
                 request_serializer=produtos__pb2.ProdutoId.SerializeToString,
@@ -72,6 +77,12 @@ class ProdutoServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def EditarProduto(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def RemoverProduto(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -94,6 +105,11 @@ def add_ProdutoServiceServicer_to_server(servicer, server):
             ),
             'AdicionarProduto': grpc.unary_unary_rpc_method_handler(
                     servicer.AdicionarProduto,
+                    request_deserializer=produtos__pb2.Produto.FromString,
+                    response_serializer=produtos__pb2.ProdutoResponse.SerializeToString,
+            ),
+            'EditarProduto': grpc.unary_unary_rpc_method_handler(
+                    servicer.EditarProduto,
                     request_deserializer=produtos__pb2.Produto.FromString,
                     response_serializer=produtos__pb2.ProdutoResponse.SerializeToString,
             ),
@@ -160,6 +176,33 @@ class ProdutoService(object):
             request,
             target,
             '/catalogo.ProdutoService/AdicionarProduto',
+            produtos__pb2.Produto.SerializeToString,
+            produtos__pb2.ProdutoResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def EditarProduto(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/catalogo.ProdutoService/EditarProduto',
             produtos__pb2.Produto.SerializeToString,
             produtos__pb2.ProdutoResponse.FromString,
             options,

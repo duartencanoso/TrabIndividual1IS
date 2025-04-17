@@ -1,0 +1,26 @@
+[
+  {
+    "id": 8,
+    "nome": "Fones sem fio",
+    "marca": "Pionner",
+    "preco": 299.99,
+    "stock": 5,
+    "caracteristicas": {
+      "tela": "n/a",
+      "bateria": "6000mAh",
+      "armazenamento": "n/a"
+    }
+  },
+  {
+    "id": 9,
+    "nome": "Câmara DSLR",
+    "marca": "Canon",
+    "preco": 600.99,
+    "stock": 8,
+    "caracteristicas": {
+      "tela": "3 polegadas",
+      "bateria": "1200mAh",
+      "armazenamento": "SDcard"
+    }
+  }
+]

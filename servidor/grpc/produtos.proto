@@ -32,6 +32,7 @@ message ListaProdutos {
 service ProdutoService {
   rpc ListarProdutos (google.protobuf.Empty) returns (ListaProdutos);
   rpc AdicionarProduto (Produto) returns (ProdutoResponse);
+  rpc EditarProduto (Produto) returns (ProdutoResponse);
   rpc RemoverProduto (ProdutoId) returns (ProdutoResponse);
   rpc ListarProdutosStream (google.protobuf.Empty) returns (stream Produto);
 }

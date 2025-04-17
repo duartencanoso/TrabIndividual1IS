@@ -8,7 +8,9 @@ import os
 from google.protobuf import empty_pb2
 
 BASE_DIR = os.path.dirname(__file__)
-DATA_FILE = os.path.join(BASE_DIR, "produtos.json")
+DATA_FILE = os.path.abspath(os.path.join(os.path.dirname(__file__), "./dados/produtos.json"))
+
+# Carregar produtos
 
 def carregar_produtos():
     try:
@@ -17,11 +19,15 @@ def carregar_produtos():
     except FileNotFoundError:
         return []
 
+# Guardar produtos
+
 def guardar_produtos(produtos):
     with open(DATA_FILE, "w") as f:
         json.dump(produtos, f, indent=2)
 
 class ProdutoService(produtos_pb2_grpc.ProdutoServiceServicer):
+
+    # Listar Produtos
 
     def ListarProdutos(self, request, context):
         produtos = carregar_produtos()
@@ -54,6 +60,8 @@ class ProdutoService(produtos_pb2_grpc.ProdutoServiceServicer):
                 armazenamento=p["caracteristicas"]["armazenamento"]
             )
 
+    # Adicinar Produtos
+
     def AdicionarProduto(self, request, context):
         produtos = carregar_produtos()
         for p in produtos:
@@ -75,6 +83,23 @@ class ProdutoService(produtos_pb2_grpc.ProdutoServiceServicer):
         produtos.append(novo_produto)
         guardar_produtos(produtos)
         return produtos_pb2.ProdutoResponse(sucesso=True, mensagem="Produto adicionado com sucesso.")
+
+    # Editar Produtos
+
+    def EditarProduto(self, request, context):
+        produtos = carregar_produtos()
+        for p in produtos:
+            if p["id"] == request.id:
+                p["nome"] = request.nome
+                p["marca"] = request.marca
+                p["preco"] = request.preco
+                p["stock"] = request.stock
+                p["caracteristicas"]["tela"] = request.tela
+                p["caracteristicas"]["bateria"] = request.bateria
+                p["caracteristicas"]["armazenamento"] = request.armazenamento
+                guardar_produtos(produtos)
+                return produtos_pb2.ProdutoResponse(sucesso=True, mensagem="Produto editado com sucesso.")
+        return produtos_pb2.ProdutoResponse(sucesso=False, mensagem="Produto não encontrado.")
 
     def RemoverProduto(self, request, context):
         produtos = carregar_produtos()

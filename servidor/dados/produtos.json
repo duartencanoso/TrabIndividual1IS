@@ -1,14 +1,14 @@
 [
   {
     "id": 1,
-    "nome": "Smartphone",
+    "nome": "Iphone 15 pro max",
     "marca": "Apple",
-    "preco": 299.99,
-    "stock": 25,
+    "preco": 900.0,
+    "stock": 30,
     "caracteristicas": {
-      "tela": "6.5 polegadas",
-      "bateria": "4000mAh",
-      "armazenamento": "128GB"
+      "tela": "6.1",
+      "bateria": "500mAh",
+      "armazenamento": "256"
     }
   },
   {
@@ -33,6 +33,54 @@
       "tela": "n/a",
       "bateria": "2000mAh",
       "armazenamento": "n/a"
+    }
+  },
+  {
+    "id": 4,
+    "nome": "Smartwatch GEN 8",
+    "marca": "Garmin",
+    "preco": 200.99,
+    "stock": 20,
+    "caracteristicas": {
+      "tela": "1.4 polegadas",
+      "bateria": "300mAh",
+      "armazenamento": "4GB"
+    }
+  },
+  {
+    "id": 5,
+    "nome": "Portatil UltraSlim",
+    "marca": "Lenovo",
+    "preco": 849.0,
+    "stock": 10,
+    "caracteristicas": {
+      "tela": "15.6 polegadas",
+      "bateria": "6000mAh",
+      "armazenamento": "512GB SSD"
+    }
+  },
+  {
+    "id": 6,
+    "nome": "Tablet Pro 11",
+    "marca": "Huawei",
+    "preco": 500.0,
+    "stock": 18,
+    "caracteristicas": {
+      "tela": "11 polegadas",
+      "bateria": "7500mAh",
+      "armazenamento": "256GB"
+    }
+  },
+  {
+    "id": 7,
+    "nome": "Telemovel Android",
+    "marca": "Xiaomi",
+    "preco": 500.0,
+    "stock": 20,
+    "caracteristicas": {
+      "tela": "13 polegadas",
+      "bateria": "1500mAh",
+      "armazenamento": "256GB"
     }
   }
 ]
